@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine 💖</title>
+  <title>Will You Be My Valentine 💖</title>
 
   <style>
     * {
@@ -21,50 +21,56 @@
       padding: 20px;
     }
 
-    .container {
+    .card {
       width: 100%;
       max-width: 380px;
-      text-align: center;
-      background: white;
-      padding: 25px;
+      background: #fff;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       position: relative;
     }
 
     h1 {
       color: #ff4d6d;
-      margin-bottom: 20px;
       font-size: 1.6rem;
+      margin-bottom: 25px;
     }
 
     h2 {
       font-size: 1.2rem;
+      margin-top: 10px;
     }
 
-    .buttons {
+    .btn-group {
       margin-top: 20px;
+      height: 120px;
+      position: relative;
     }
 
     button {
-      width: 120px;
-      padding: 12px;
+      padding: 12px 22px;
       font-size: 16px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      margin: 10px;
+      position: absolute;
     }
 
     #yesBtn {
-      background-color: #ff4d6d;
+      background: #ff4d6d;
       color: white;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     #noBtn {
-      background-color: #6c757d;
+      background: #6c757d;
       color: white;
-      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .hidden {
@@ -73,62 +79,56 @@
 
     img {
       width: 100%;
-      max-width: 250px;
+      max-width: 260px;
       margin-top: 20px;
       border-radius: 15px;
-    }
-
-    /* Small screens */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.4rem;
-      }
-      button {
-        width: 100px;
-        font-size: 15px;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container" id="questionBox">
+  <!-- QUESTION CARD -->
+  <div class="card" id="questionCard">
     <h1>Will you be my Valentine? 💖</h1>
 
-    <div class="buttons">
+    <div class="btn-group">
       <button id="yesBtn">Yes ❤️</button>
       <button id="noBtn">No 😜</button>
     </div>
   </div>
 
-  <div class="container hidden" id="loveBox">
+  <!-- LOVE CARD -->
+  <div class="card hidden" id="loveCard">
     <h1>Best decision ever 💕</h1>
     <h2>I love you Payal 😘❤️</h2>
-    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Love Gif">
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Love GIF">
   </div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
-    const questionBox = document.getElementById("questionBox");
-    const loveBox = document.getElementById("loveBox");
+    const questionCard = document.getElementById("questionCard");
+    const loveCard = document.getElementById("loveCard");
 
     function moveNoButton() {
-      const container = questionBox.getBoundingClientRect();
-      const x = Math.random() * (container.width - noBtn.offsetWidth);
-      const y = Math.random() * (container.height - noBtn.offsetHeight);
+      const card = questionCard.getBoundingClientRect();
+      const maxX = card.width - noBtn.offsetWidth;
+      const maxY = 100;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     }
 
-    // Works on mobile + desktop
     noBtn.addEventListener("mouseover", moveNoButton);
     noBtn.addEventListener("touchstart", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      questionBox.classList.add("hidden");
-      loveBox.classList.remove("hidden");
+      questionCard.classList.add("hidden");
+      loveCard.classList.remove("hidden");
     });
   </script>
 
