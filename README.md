@@ -57,4 +57,80 @@
     }
 
     #yesBtn {
-      background-color
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #6c757d;
+      color: white;
+      position: absolute;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      max-width: 250px;
+      margin-top: 20px;
+      border-radius: 15px;
+    }
+
+    /* Small screens */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      button {
+        width: 100px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="questionBox">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes ❤️</button>
+      <button id="noBtn">No 😜</button>
+    </div>
+  </div>
+
+  <div class="container hidden" id="loveBox">
+    <h1>Best decision ever 💕</h1>
+    <h2>I love you Payal 😘❤️</h2>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Love Gif">
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionBox = document.getElementById("questionBox");
+    const loveBox = document.getElementById("loveBox");
+
+    function moveNoButton() {
+      const container = questionBox.getBoundingClientRect();
+      const x = Math.random() * (container.width - noBtn.offsetWidth);
+      const y = Math.random() * (container.height - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Works on mobile + desktop
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      questionBox.classList.add("hidden");
+      loveBox.classList.remove("hidden");
+    });
+  </script>
+
+</body>
+</html>
